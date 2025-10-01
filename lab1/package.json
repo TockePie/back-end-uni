@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "author": "Maxim Kradozhon",
   "type": "module",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start:dev": "npx tsx --env-file=.env --watch  src/index.ts"
+    "start:dev": "tsx --env-file=.env --watch  src/index.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "tsx": "^4.20.6"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
