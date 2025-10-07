@@ -1,8 +1,8 @@
 import { NotFoundError } from '@/filters/not-found-error'
 
-import { User } from './user.dto'
+import { User } from '../models/user.dto'
 
-class UsersModel {
+export class UserService {
   users: User[]
 
   constructor() {
@@ -30,7 +30,6 @@ class UsersModel {
     }
 
     this.users.push(user)
-
     return user
   }
 
@@ -45,7 +44,3 @@ class UsersModel {
     return `User ${user_id} deleted successfully`
   }
 }
-
-const usersModel = new UsersModel()
-
-export default usersModel

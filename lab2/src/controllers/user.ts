@@ -1,53 +1,27 @@
-import { NextFunction, type Request, type Response } from 'express'
+import { UUID } from 'node:crypto'
+import { Request, Response, NextFunction } from 'express'
 
-import { NotFoundError } from '@/filters/not-found-error'
-import usersModel from '@/models/user'
-import { User } from '@/models/user.dto'
+import { UserService } from '@/services/user'
 
-function getAllUsers(_req: Request, res: Response): void {
-  const users = usersModel.getUsers()
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
-  res.status(200).json(users)
-}
-
-function getUserById(req: Request, res: Response, next: NextFunction): void {
-  try {
-    const user = usersModel.getUserById(req.params.id as User['id'])
-
-    res.status(200).json(user)
-  } catch (err) {
-    if (err instanceof NotFoundError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
+  getAllUsers = (_req: Request, res: Response) => {
+    res.status(200).json(this.userService.getUsers())
   }
-}
 
-function createUser(req: Request, res: Response) {
-  const { name } = req.body
-
-  const newUser = usersModel.createUser(name)
-  res.status(201).json(newUser)
-}
-
-function deleteUser(req: Request, res: Response, next: NextFunction): void {
-  try {
-    const user = usersModel.deleteUser(req.params.id as User['id'])
-
+  getUserById = (req: Request, res: Response) => {
+    const user = this.userService.getUserById(req.params.id as UUID)
     res.status(200).json(user)
-  } catch (err) {
-    if (err instanceof NotFoundError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
   }
-}
 
-export default {
-  getAllUsers,
-  getUserById,
-  createUser,
-  deleteUser
+  createUser = (req: Request, res: Response) => {
+    const newUser = this.userService.createUser(req.body.name)
+    res.status(201).json(newUser)
+  }
+
+  deleteUser = (req: Request, res: Response) => {
+    const message = this.userService.deleteUser(req.params.id as UUID)
+    res.status(200).json({ message })
+  }
 }

@@ -4,6 +4,8 @@ import cors from 'cors'
 
 import routes from '@/routes/index'
 
+import { errorHandler } from './middlewares/error-handler'
+
 dotenv.config()
 
 const app = express()
@@ -14,6 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use(`/api`, routes)
+
+app.use(errorHandler)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
