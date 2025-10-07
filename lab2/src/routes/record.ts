@@ -1,12 +1,18 @@
 import express from 'express'
 
-import RecordController from '@/controllers/record'
+import { RecordController } from '@/controllers/record'
+import { validateBody } from '@/middlewares/validate-body'
+import { CreateRecord } from '@/models/record.dto'
+import { RecordService } from '@/services/record'
+
+const recordService = new RecordService()
+const recordController = new RecordController(recordService)
 
 const router = express.Router()
 
-router.get('/', RecordController.getRecords)
-router.get('/:id', RecordController.getRecordById)
-router.post('/', RecordController.createRecord)
-router.delete('/:id', RecordController.deleteRecord)
+router.get('/', recordController.getRecords)
+router.get('/:id', recordController.getRecordById)
+router.post('/', validateBody(CreateRecord), recordController.createRecord)
+router.delete('/:id', recordController.deleteRecord)
 
 export default router

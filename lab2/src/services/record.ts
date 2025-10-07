@@ -1,10 +1,10 @@
 import { NotFoundError } from '@/filters/not-found-error'
 
-import { Category } from './category.dto'
-import { CreateRecord, Record } from './record.dto'
-import { User } from './user.dto'
+import { Category } from '../models/category.dto'
+import { CreateRecord, Record } from '../models/record.dto'
+import { User } from '../models/user.dto'
 
-class RecordModel {
+export class RecordService {
   records: Record[]
 
   constructor() {
@@ -52,7 +52,6 @@ class RecordModel {
     }
 
     this.records.push(record)
-
     return record
   }
 
@@ -67,7 +66,3 @@ class RecordModel {
     return `User ${record_id} deleted successfully`
   }
 }
-
-const recordModel = new RecordModel()
-
-export default recordModel

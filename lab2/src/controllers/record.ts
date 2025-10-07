@@ -1,100 +1,31 @@
-import { NextFunction, Request, Response } from 'express'
+import { Request, Response } from 'express'
+import { RecordService } from '@/services/record'
+import { UUID } from 'node:crypto'
 
-import { BadRequestError } from '@/filters/bad-request-error'
-import { NotFoundError } from '@/filters/not-found-error'
-import recordModel from '@/models/record'
-import { Record } from '@/models/record.dto'
+export class RecordController {
+  constructor(private readonly recordService: RecordService) {}
 
-function getRecords(req: Request, res: Response, next: NextFunction): void {
-  try {
-    if (!req.body) {
-      throw new BadRequestError(
-        "Request body doesn't have user_id or category_id values"
-      )
-    }
-
+  getRecords = (req: Request, res: Response) => {
     const { user_id, category_id } = req.body
-    if (!user_id && !category_id) {
-      throw new BadRequestError(
-        'You need to put at least one parameter: user_id or category_id'
-      )
-    }
-
-    const records = recordModel.getRecords({ user_id, category_id })
+    const records = this.recordService.getRecords({
+      user_id: user_id as UUID,
+      category_id: category_id as UUID
+    })
     res.status(200).json(records)
-  } catch (err) {
-    if (err instanceof BadRequestError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
   }
-}
 
-function getRecordById(req: Request, res: Response, next: NextFunction): void {
-  try {
-    if (!req.body) {
-      throw new BadRequestError("Request body doesn't have an id value")
-    }
-
-    const record = recordModel.getRecordById(req.params.id as Record['id'])
-
+  getRecordById = (req: Request, res: Response) => {
+    const record = this.recordService.getRecordById(req.params.id as UUID)
     res.status(200).json(record)
-  } catch (err) {
-    if (err instanceof NotFoundError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
   }
-}
 
-function createRecord(req: Request, res: Response, next: NextFunction) {
-  try {
-    if (!req.body) {
-      throw new BadRequestError("Request body doesn't have any value")
-    }
-
-    const { user_id, category_id, amount } = req.body
-
-    if (!user_id || !category_id) {
-      throw new BadRequestError(
-        "Request body doesn't have user_id or category_id values"
-      )
-    }
-
-    const newUser = recordModel.createRecord({ user_id, category_id, amount })
-    res.status(201).json(newUser)
-  } catch (err) {
-    if (err instanceof BadRequestError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
+  createRecord = (req: Request, res: Response) => {
+    const newRecord = this.recordService.createRecord(req.body)
+    res.status(201).json(newRecord)
   }
-}
 
-function deleteRecord(req: Request, res: Response, next: NextFunction): void {
-  try {
-    if (!req.params.id) {
-      throw new BadRequestError("Request param doesn't have any value")
-    }
-
-    const record = recordModel.deleteRecord(req.params.id as Record['id'])
-
-    res.status(200).json(record)
-  } catch (err) {
-    if (err instanceof NotFoundError || err instanceof BadRequestError) {
-      res.status(err.status).json({ error: err.message })
-    } else {
-      next(err)
-    }
+  deleteRecord = (req: Request, res: Response) => {
+    const message = this.recordService.deleteRecord(req.params.id as UUID)
+    res.status(200).json({ message })
   }
-}
-
-export default {
-  getRecords,
-  getRecordById,
-  createRecord,
-  deleteRecord
 }
