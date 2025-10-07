@@ -1,6 +1,6 @@
 import { NotFoundError } from '@/filters/not-found-error'
 
-import { User } from '../models/user.dto'
+import { CreateUser, User } from '../models/user.dto'
 
 export class UserService {
   users: User[]
@@ -23,7 +23,7 @@ export class UserService {
     return user
   }
 
-  createUser(name: User['name']): User {
+  createUser(name: CreateUser['name']): User {
     const user = {
       id: crypto.randomUUID(),
       name
