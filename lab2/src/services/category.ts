@@ -1,5 +1,4 @@
-import { NotFoundError } from '@/filters/not-found-error'
-
+import { NotFoundError } from '../filters/not-found-error'
 import { Category, CreateCategory } from '../models/category.dto'
 
 export class CategoryService {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { NotFoundError } from '@/filters/not-found-error'
-import { BadRequestError } from '@/filters/bad-request-error'
+import { NotFoundError } from '../filters/not-found-error'
+import { BadRequestError } from '../filters/bad-request-error'
 
 export const errorHandler = (
   err: any,

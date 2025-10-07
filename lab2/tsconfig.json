@@ -21,10 +21,10 @@
         "transform": "typescript-transform-paths",
         "afterDeclarations": true
       }
-    ],
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    ]
+    // "paths": {
+    //   "@/*": ["src/*"]
+    // }
   },
   "include": ["process.env.d.ts", "./**/*.ts"],
   "exclude": ["node_modules"]

@@ -6,12 +6,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon -r tsconfig-paths/register --exec ts-node ./src/index.ts --files",
     "build": "tsc && tsc-alias",
-    "start": "cross-env NODE_ENV=production node -r module-alias/register ./build/index.js",
+    "start": "cross-env NODE_ENV=production node ./build/index.js",
     "lint": "eslint ./src/**/*.ts --fix",
     "format": "prettier --write ./**/*.{ts,json}"
-  },
-  "_moduleAliases": {
-    "@": "build"
   },
   "keywords": [],
   "author": "Maxim Kradozhon",

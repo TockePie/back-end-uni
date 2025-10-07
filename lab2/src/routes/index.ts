@@ -1,8 +1,8 @@
 import express from 'express'
 
-import CategoryRoutes from '@/routes/category'
-import RecordRoutes from '@/routes/record'
-import UserRoutes, { userController } from '@/routes/user'
+import CategoryRoutes from '../routes/category'
+import RecordRoutes from '../routes/record'
+import UserRoutes, { userController } from '../routes/user'
 
 const router = express.Router()
 

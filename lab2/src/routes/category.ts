@@ -1,9 +1,9 @@
 import express from 'express'
 
-import { CategoryController } from '@/controllers/category'
-import { validateBody } from '@/middlewares/validate-body'
-import { CreateCategory } from '@/models/category.dto'
-import { CategoryService } from '@/services/category'
+import { CategoryController } from '../controllers/category'
+import { validateBody } from '../middlewares/validate-body'
+import { CreateCategory } from '../models/category.dto'
+import { CategoryService } from '../services/category'
 
 const categoryService = new CategoryService()
 const categoryController = new CategoryController(categoryService)

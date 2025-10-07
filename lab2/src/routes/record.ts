@@ -1,9 +1,9 @@
 import express from 'express'
 
-import { RecordController } from '@/controllers/record'
-import { validateBody } from '@/middlewares/validate-body'
-import { CreateRecord } from '@/models/record.dto'
-import { RecordService } from '@/services/record'
+import { RecordController } from '../controllers/record'
+import { validateBody } from '../middlewares/validate-body'
+import { CreateRecord } from '../models/record.dto'
+import { RecordService } from '../services/record'
 
 const recordService = new RecordService()
 const recordController = new RecordController(recordService)

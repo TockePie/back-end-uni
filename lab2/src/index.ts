@@ -3,8 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
-import routes from '@/routes/index'
-
+import routes from './routes/index'
 import { errorHandler } from './middlewares/error-handler'
 
 dotenv.config()

@@ -1,7 +1,7 @@
 import { UUID } from 'node:crypto'
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 
-import { UserService } from '@/services/user'
+import { UserService } from '../services/user'
 
 export class UserController {
   constructor(private readonly userService: UserService) {}

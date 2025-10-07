@@ -1,5 +1,4 @@
-import { NotFoundError } from '@/filters/not-found-error'
-
+import { NotFoundError } from '../filters/not-found-error'
 import { CreateUser, User } from '../models/user.dto'
 
 export class UserService {

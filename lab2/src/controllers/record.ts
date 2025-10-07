@@ -1,6 +1,7 @@
-import { Request, Response } from 'express'
-import { RecordService } from '@/services/record'
 import { UUID } from 'node:crypto'
+import { Request, Response } from 'express'
+
+import { RecordService } from '../services/record'
 
 export class RecordController {
   constructor(private readonly recordService: RecordService) {}

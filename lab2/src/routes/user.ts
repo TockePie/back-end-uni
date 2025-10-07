@@ -1,9 +1,9 @@
 import express from 'express'
 
-import { UserController } from '@/controllers/user'
-import { validateBody } from '@/middlewares/validate-body'
-import { CreateUser } from '@/models/user.dto'
-import { UserService } from '@/services/user'
+import { UserController } from '../controllers/user'
+import { validateBody } from '../middlewares/validate-body'
+import { CreateUser } from '../models/user.dto'
+import { UserService } from '../services/user'
 
 const router = express.Router()
 

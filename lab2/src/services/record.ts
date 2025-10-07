@@ -1,5 +1,4 @@
-import { NotFoundError } from '@/filters/not-found-error'
-
+import { NotFoundError } from '../filters/not-found-error'
 import { Category } from '../models/category.dto'
 import { CreateRecord, Record } from '../models/record.dto'
 import { User } from '../models/user.dto'

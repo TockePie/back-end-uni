@@ -1,7 +1,7 @@
 import { UUID } from 'node:crypto'
 import { NextFunction, type Request, type Response } from 'express'
 
-import { CategoryService } from '@/services/category'
+import { CategoryService } from '../services/category'
 
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
