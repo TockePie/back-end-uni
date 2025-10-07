@@ -1,8 +1,8 @@
 import { NotFoundError } from '@/filters/not-found-error'
 
-import { Category } from './category.dto'
+import { Category, CreateCategory } from '../models/category.dto'
 
-class CategoryModel {
+export class CategoryService {
   categories: Category[]
 
   constructor() {
@@ -13,14 +13,13 @@ class CategoryModel {
     return this.categories
   }
 
-  createCategory(name: Category['name']): Category {
+  createCategory(name: CreateCategory['name']): Category {
     const category = {
       id: crypto.randomUUID(),
       name
     }
 
     this.categories.push(category)
-
     return category
   }
 
@@ -35,7 +34,3 @@ class CategoryModel {
     return `Category ${category_id} deleted successfully`
   }
 }
-
-const categoryModel = new CategoryModel()
-
-export default categoryModel
