@@ -1,20 +1,20 @@
-import { IsDateString, IsNumber, IsUUID } from 'class-validator'
-import { UUID } from 'node:crypto'
+import { IsDateString, IsNumber, IsUUID, Min } from 'class-validator'
 
 export class CreateRecord {
   @IsUUID()
-  user_id: UUID
+  user_id: string
 
   @IsUUID()
-  category_id: UUID
+  category_id: string
 
   @IsNumber()
+  @Min(0)
   amount: number
 }
 
 export class Record extends CreateRecord {
   @IsUUID()
-  id: UUID
+  id: string
 
   @IsDateString()
   created_at: Date
