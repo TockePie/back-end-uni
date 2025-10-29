@@ -5,11 +5,12 @@ export class CreateCategory {
   name: string
 
   @IsBoolean()
-  is_global: boolean
+  @IsOptional()
+  is_global?: boolean
 
   @IsUUID()
   @IsOptional()
-  user_id?: string
+  user_id?: string | null
 }
 
 export class Category extends CreateCategory {
