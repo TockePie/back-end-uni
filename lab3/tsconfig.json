@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "target": "es6",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "outDir": "build",
+    "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
@@ -26,6 +27,11 @@
     //   "@/*": ["src/*"]
     // }
   },
-  "include": ["process.env.d.ts", "./**/*.ts"],
+  "include": [
+    "process.env.d.ts",
+    "./**/*.ts",
+    "src/generated/**/*.js",
+    "src/generated/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

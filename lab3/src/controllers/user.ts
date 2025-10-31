@@ -1,4 +1,3 @@
-import { UUID } from 'node:crypto'
 import { Request, Response } from 'express'
 
 import { UserService } from '../services/user'
@@ -12,7 +11,7 @@ export class UserController {
   }
 
   getUserById = async (req: Request, res: Response) => {
-    const user = await this.userService.getUserById(req.params.id as UUID)
+    const user = await this.userService.getUserById(req.params.id)
 
     if (!user) {
       res.status(404).json({
@@ -29,7 +28,7 @@ export class UserController {
   }
 
   deleteUser = async (req: Request, res: Response) => {
-    const message = await this.userService.deleteUser(req.params.id as UUID)
+    const message = await this.userService.deleteUser(req.params.id)
     res.status(200).json({ message })
   }
 }

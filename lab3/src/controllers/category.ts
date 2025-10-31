@@ -1,4 +1,3 @@
-import { UUID } from 'node:crypto'
 import { type Request, type Response } from 'express'
 
 import { CategoryService } from '../services/category'

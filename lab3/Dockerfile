@@ -6,9 +6,9 @@ COPY package*.json tsconfig*.json ./
 
 RUN npm ci
 
-RUN npm run build
-
 COPY . .
+
+RUN npx prisma generate && npm run build
 
 FROM node:lts-slim AS runner
 
@@ -18,9 +18,10 @@ COPY package*.json ./
 
 RUN npm ci --only=production
 
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /src/dist ./dist
+COPY --from=builder /src/prisma ./prisma
 
 EXPOSE 8000
 ENV NODE_ENV=production
 
-CMD ["node", "dist/server.js"]
+CMD ["npm", "run", "start"]

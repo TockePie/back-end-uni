@@ -1,4 +1,4 @@
-import { BadRequestError } from 'src/filters/bad-request.exception'
+import { BadRequestError } from '../filters/bad-request.exception'
 import { NotFoundError } from '../filters/not-found.exception'
 import { CreateRecord, Record } from '../models/record.dto'
 import prisma from './prisma'
